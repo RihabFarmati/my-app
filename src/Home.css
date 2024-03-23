@@ -1,0 +1,11 @@
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .book-grid > * {
+    flex: 0 0 calc(25% - 20px); /* Adjust width for three items per row with gutter */
+    margin: 10px; /* Adjust margin to create gutter between items */
+    margin-bottom: 100px;
+  }
+  
