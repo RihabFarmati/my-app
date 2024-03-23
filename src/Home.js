@@ -3,9 +3,11 @@ import "./Home.css"
 import { useEffect } from 'react';
 import SnippetBook from './components/SnippetBook';
 import ApiService from './services/api-service';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         // Define an async function to fetch books and set the state
@@ -15,6 +17,7 @@ function Home() {
                 setBooks(fetchedBooks);
             } catch (error) {
                 console.error("Error fetching books:", error);
+                navigate("/login")
             }
         };
 
@@ -28,10 +31,14 @@ function Home() {
 
     return (
         <div>
-              <h2>Books</h2>
+            <h2>Books</h2>
             <section className="book-grid">
-                {books.map(book =>
-                    <SnippetBook key={book.id} book={book} />
+                {books && books.length > 0 ? (
+                    books.map(book =>
+                        <SnippetBook key={book.id} book={book} />
+                    )
+                ) : (
+                    <p>No books available</p>
                 )}
             </section>
         </div>
