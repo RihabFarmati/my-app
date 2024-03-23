@@ -17,7 +17,6 @@ export default function Login() {
     }
 
     const submit = async e => {
-        console.log(username + " and psw : " + password)
         e.preventDefault();
         AuthService.login(username, password);
         if (localStorage.getItem("auth")) {
